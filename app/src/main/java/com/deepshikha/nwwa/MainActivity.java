@@ -1,7 +1,9 @@
 package com.deepshikha.nwwa;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.deepshikha.nwwa.model.SharedPref;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -22,8 +24,14 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
 
+//    objs
     private AppBarConfiguration mAppBarConfiguration;
+    SharedPref sp;
+//vars
+
+//    ui
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +59,16 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+//        obj initialization
+        sp = new SharedPref(this);
+//        USER AUTHORIZATION /AUTHENTICATION CHECKING
+        if(!sp.getUserAuthorization()){           // if user is not authorized, then open register
+//            open register fragment
+            Intent i = new Intent(this,Register.class);
+            startActivity(i);
+
+
+        }
     }
 
     @Override
@@ -66,4 +84,6 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
 }

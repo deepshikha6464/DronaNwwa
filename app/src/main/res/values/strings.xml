@@ -13,4 +13,15 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="formText" ><b>Verification Form </b></string>
+    <string name="formTextDescription" >Please Fill the Verification Form in order to get started with the application</string>
+    <string name="name" >Name</string>
+    <string name="phoneno"><font size="12">Phone Number</font></string>
+    <string name="dob">Enter Date of Birth</string>
+    <string name="code">Enter Code (if any)</string>
+    <string name="submit"><b>Submit</b></string>
+    <string name="note" >Note: \nVerification Process may take few Days.\nYou will be notified once done.</string>
 </resources>

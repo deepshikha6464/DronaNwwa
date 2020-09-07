@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="postingType">Posting Type
+        <item>Long-G</item>
+    <item> Instructors</item>
+    <item>Officers</item>
+    <item>Sailors</item>
+        <item>None of above</item>
+    </string-array>
+</resources>
