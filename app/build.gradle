@@ -35,6 +35,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:17.5.0'
 //    firebase libraries
     implementation 'com.google.firebase:firebase-auth:19.3.1'
+    implementation 'com.google.firebase:firebase-storage:19.1.1'
+    implementation 'com.google.firebase:firebase-database:19.3.0'
 //    google sign sign
     implementation 'com.google.android.gms:play-services-auth:18.1.0'
 //    navigation
@@ -42,4 +44,5 @@ dependencies {
     implementation "androidx.navigation:navigation-ui:$nav_version"
 
     implementation 'com.google.android.material:material:1.1.0-alpha04'
+
 }
