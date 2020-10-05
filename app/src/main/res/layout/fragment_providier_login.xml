@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.samudri.ProviderLogin">
+
+    <TextView
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pc"
+        android:maxLines="3"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorPrimaryDark"
+        android:fontFamily="@font/poppins"
+        android:padding="8dp"
+       />
+
+    <TextView
+        android:id="@+id/regText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_text"
+        android:maxLines="3"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimary"
+        android:fontFamily="@font/poppins"
+        android:padding="8dp"
+        android:layout_below="@id/start"
+       />
+<!--    request new providers-->
+    <LinearLayout
+        android:id="@+id/ll3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+
+        android:layout_below="@+id/regText">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select your Area of Intreast"
+            android:maxLines="3"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/poppins"
+           />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:entries="@array/IntrestAreas"
+            android:soundEffectsEnabled="true"
+            android:spinnerMode="dropdown"
+            android:splitMotionEvents="true"
+            android:touchscreenBlocksFocus="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:hint="Add Description of your work "
+            />
+
+        <Button
+            android:id="@+id/providerReg"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/poppins"
+            android:text="Request " />
+    </LinearLayout>
+<!--    or-->
+    <TextView
+        android:id="@+id/ll5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="----or----"
+        android:textSize="14sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/cardview_shadow_start_color"
+        android:layout_below="@+id/ll3"/>
+<!--verified providers login-->
+    <TextView
+        android:id="@+id/logintxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/verified_providers_login"
+        android:maxLines="3"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorPrimary"
+        android:fontFamily="@font/poppins"
+       android:layout_marginLeft="10dp"
+        android:layout_below="@id/ll5"/>
+    <LinearLayout
+        android:id="@+id/ll4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:layout_below="@+id/logintxt">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/dob"
+            android:padding="4dp"
+            android:layout_weight="60"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:hintTextAppearance="@style/TextLabel"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:hint="@string/enter_code"
+            app:endIconMode="clear_text"
+            app:errorTextAppearance="@style/CustomTextInputLayoutStyle.ErrorTextStyle"
+            app:endIconTint="@color/colorPrimaryDark"
+            app:errorEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dob1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <Button
+            android:id="@+id/providerLogin"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="40"
+            android:fontFamily="@font/poppins"
+            android:text="@string/login" />
+    </LinearLayout>
+</RelativeLayout>

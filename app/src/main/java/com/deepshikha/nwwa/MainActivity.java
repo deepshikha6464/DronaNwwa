@@ -1,8 +1,15 @@
 package com.deepshikha.nwwa;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -31,6 +38,30 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(this, Main2Activity.class);
+
+        switch (item.getItemId()) {
+            case R.id.admin:
+                intent.putExtra("FragName", "adminLogin");
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                return true;
+            case R.id.provider:
+                intent.putExtra("FragName", "providerLogin");
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+                return  true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
     @Override
     public void onBackPressed() {
         if(navView.getSelectedItemId() == R.id.navigation_home){

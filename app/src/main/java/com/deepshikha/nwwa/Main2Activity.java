@@ -3,12 +3,11 @@ package com.deepshikha.nwwa;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.transition.Explode;
-import android.view.Window;
 
-import com.deepshikha.nwwa.ui.KalaKendra;
-import com.deepshikha.nwwa.ui.SamudriItems;
-import com.deepshikha.nwwa.ui.Saundrya;
+import com.deepshikha.nwwa.ui.AdminLogin;
+import com.deepshikha.nwwa.ui.home.kala.KalaKendra;
+import com.deepshikha.nwwa.ui.home.saundrya.Saundrya;
+import com.deepshikha.nwwa.ui.samudri.ProviderLogin;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -32,6 +31,25 @@ public class Main2Activity extends AppCompatActivity {
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_container, new Saundrya())
+                        .commit();
+                break;
+           case "adminLogin":
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new AdminLogin())
+                        .commit();
+                break;
+           case "providerLogin":
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new ProviderLogin())
+                        .commit();
+                break;
+
+           case "saudryaConsol":
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, new ProviderLogin())
                         .commit();
                 break;
         }

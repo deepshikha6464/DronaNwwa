@@ -1,10 +1,13 @@
-package com.deepshikha.nwwa.ui;
+package com.deepshikha.nwwa.ui.home.saundrya;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,16 +17,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.deepshikha.nwwa.R;
 import com.deepshikha.nwwa.model.SaundryaServices;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class SaundryaAdapter extends RecyclerView.Adapter<SaundryaAdapter.itemViewHolder>  {
-    List<SaundryaServices> list;
-Context ctx;
-    private static ItemClickListener mClickListener;
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
-    public SaundryaAdapter(List<SaundryaServices> list, Context ctx) {
+public class SaundryaAdapter extends RecyclerView.Adapter<SaundryaAdapter.itemViewHolder>  {
+    private static final String TAG = "SaundryaAdapter";
+    List<SaundryaServices> list;
+   List<String> appointmentItems = new ArrayList<>();
+    private static ItemClickListener mClickListener;
+    private AppointmentListInterface appointmentList;
+    public SaundryaAdapter(List<SaundryaServices> list, AppointmentListInterface ap) {
         this.list = list;
-        this.ctx = ctx;
+
+        this.appointmentList = ap;
     }
 
 
@@ -40,8 +48,9 @@ Context ctx;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull itemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final itemViewHolder holder, int position) {
         final SaundryaServices  pl = list.get(position);
+
         holder.itemTitle.setText(pl.getTitle());
         holder.st1.setText(pl.getSt1());
         holder.st2.setText(pl.getSt2());
@@ -52,22 +61,52 @@ Context ctx;
         holder.st7.setText(pl.getSt7());
         holder.st8.setText(pl.getSt8());
 
-          if(holder.cb1.isEnabled())
-              Saundrya.listOfSrevces.add(pl.getSt1());
-  if(holder.cb2.isEnabled())
-              Saundrya.listOfSrevces.add(pl.getSt2());
-  if(holder.cb3.isEnabled())
-              Saundrya.listOfSrevces.add(pl.getSt3());
-  if(holder.cb4.isEnabled())
-              Saundrya.listOfSrevces.add(pl.getSt4());
-  if(holder.cb5.isEnabled())
-              Saundrya.listOfSrevces.add(pl.getSt5());
-  if(holder.cb6.isEnabled())
-              Saundrya.listOfSrevces.add(pl.getSt6());
-  if(holder.cb7.isEnabled())
-              Saundrya.listOfSrevces.add(pl.getSt7());
-  if(holder.cb8.isEnabled())
-              Saundrya.listOfSrevces.add(pl.getSt8());
+        holder.service.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.subtitleLL.setVisibility(View.VISIBLE);
+                holder.collapse.setVisibility(View.VISIBLE);
+            }
+        });
+        holder.collapse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.subtitleLL.setVisibility(View.GONE);
+                 holder.collapse.setVisibility(View.GONE);
+            }
+        });
+        holder.cb11.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+
+                    appointmentItems.add(pl.getTitle());
+                    appointmentList.appointmentList((ArrayList<String>) appointmentItems);
+                    Log.d(TAG, "onCheckedChanged: " +appointmentItems);
+                }
+                else{
+                    appointmentItems.remove(pl.getTitle());
+
+                }
+            }
+        });
+
+//          if(holder.cb1.isEnabled())
+//              Saundrya.listOfSrevces.add(pl.getSt1());
+//  if(holder.cb2.isEnabled())
+//              Saundrya.listOfSrevces.add(pl.getSt2());
+//  if(holder.cb3.isEnabled())
+//              Saundrya.listOfSrevces.add(pl.getSt3());
+//  if(holder.cb4.isEnabled())
+//              Saundrya.listOfSrevces.add(pl.getSt4());
+//  if(holder.cb5.isEnabled())
+//              Saundrya.listOfSrevces.add(pl.getSt5());
+//  if(holder.cb6.isEnabled())
+//              Saundrya.listOfSrevces.add(pl.getSt6());
+//  if(holder.cb7.isEnabled())
+//              Saundrya.listOfSrevces.add(pl.getSt7());
+//  if(holder.cb8.isEnabled())
+//              Saundrya.listOfSrevces.add(pl.getSt8());
 //hiding chkboxes with epty strings
         if(holder.st3.getText().equals("")){
             holder.cb3.setVisibility(View.GONE);
@@ -94,15 +133,18 @@ Context ctx;
             holder.st8.setVisibility(View.GONE);
         }
 
+
+
+
     }
 
     public class itemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-    LinearLayout l1,l2,l3,l4,l5,l6,l7,l8;
+    LinearLayout l1,l2,l3,l4,l5,l6,l7,l8,subtitleLL,service;
     TextView st1,st2,st3,st4,st5,st6,st7,st8,itemTitle;
-    CheckBox cb1,cb2,cb3,cb4,cb5,cb6,cb7,cb8;
+    CheckBox cb1,cb2,cb3,cb4,cb5,cb6,cb7,cb8,cb11;
         ItemClickListener itemClickListener;
-
+ImageView collapse;
         public itemViewHolder(@NonNull View itemView, ItemClickListener mClickListener) {
         super(itemView);
         l1= itemView.findViewById(R.id.l1);
@@ -113,6 +155,7 @@ Context ctx;
         l6= itemView.findViewById(R.id.l6);
         l7= itemView.findViewById(R.id.l7);
         l8= itemView.findViewById(R.id.l8);
+        collapse= itemView.findViewById(R.id.collpase);
 
 
         st1= itemView.findViewById(R.id.st1);
@@ -134,6 +177,11 @@ Context ctx;
         cb6= itemView.findViewById(R.id.cb6);cb6.setOnClickListener(this);
         cb7= itemView.findViewById(R.id.cb7);cb7.setOnClickListener(this);
         cb8= itemView.findViewById(R.id.cb8);cb8.setOnClickListener(this);
+        cb11= itemView.findViewById(R.id.cb11);cb11.setOnClickListener(this);
+
+
+        subtitleLL= itemView.findViewById(R.id.subtitleLL);subtitleLL.setOnClickListener(this);
+        service= itemView.findViewById(R.id.service);service.setOnClickListener(this);
 
         this.itemClickListener = mClickListener;
 
@@ -154,4 +202,8 @@ Context ctx;
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }
+    public interface AppointmentListInterface {
+        void appointmentList(ArrayList<String> list);
+    }
+
 }

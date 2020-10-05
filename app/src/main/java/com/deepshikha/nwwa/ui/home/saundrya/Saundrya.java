@@ -1,4 +1,4 @@
-package com.deepshikha.nwwa.ui;
+package com.deepshikha.nwwa.ui.home.saundrya;
 
 
 import android.content.Context;
@@ -20,15 +20,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.deepshikha.nwwa.R;
 import com.deepshikha.nwwa.model.SaundryaServices;
-import com.deepshikha.nwwa.ui.dashboard.CustomAdapter;
+import com.deepshikha.nwwa.ui.samudri.CustomAdapter;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -41,20 +48,20 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Saundrya extends Fragment implements SaundryaAdapter.ItemClickListener {
+public class Saundrya extends Fragment implements SaundryaAdapter.ItemClickListener, SaundryaAdapter.AppointmentListInterface {
     private static final String TAG = "Saundrya";
 //ui
     ViewPager viewPager;
     LinearLayout sliderDotspanel;
-    Button book;
+    Button book,request;
     List<SaundryaServices> pl;
     private int dotscount;
     private ImageView[] dots;
@@ -62,8 +69,7 @@ public class Saundrya extends Fragment implements SaundryaAdapter.ItemClickListe
     ProgressBar pb;
     Integer[] imageId = {R.drawable.saundrya1, R.drawable.saundrya2, R.drawable.saundrya3};
     String[] imagesName = {"image1","image2","image3"};
-public static List<String> listOfSrevces = new ArrayList();
-
+    public  ArrayList<String> bookingList;
     int currentPage = 0;
     Timer timer;
     final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
@@ -78,6 +84,9 @@ public static List<String> listOfSrevces = new ArrayList();
 //    ui
     RecyclerView rv;
     SaundryaAdapter adapter;
+    TextView name,phone;
+    ListView list;
+    TextInputLayout date;
 
     public Saundrya() {
         // Required empty public constructor
@@ -271,7 +280,7 @@ public static List<String> listOfSrevces = new ArrayList();
                     pl.add(post);
                 }
 
-                adapter = new SaundryaAdapter(pl, getActivity());
+                adapter = new SaundryaAdapter(pl,Saundrya.this);
 //                if (flag == 0) {
                     rv.setAdapter(adapter);
                     pb.setVisibility(View.GONE);
@@ -311,13 +320,47 @@ public void BookAppointmentButton(){
 
     bottomSheetDialog.setContentView(view1);
 
+    name = view1.findViewById(R.id.namebook);
+    phone = view1.findViewById(R.id.phone);
+    list = view1.findViewById(R.id.list);
+    date = view1.findViewById(R.id.dateee);
+    request = view1.findViewById(R.id.re);
+
+    setValuesToAppointment();
+    request.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            sendAppointmentToFirebase();
+        }
+    });
     bottomSheetDialog.show();
-    listOfSrevces.size();
-    Log.d(TAG, "BookAppointmentButton: "+ listOfSrevces);
+
 }
+
+    private void setValuesToAppointment() {
+        name.setText("Deepshikha");
+        phone.setText("9599670377");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                getContext(),
+                R.layout.appointment_list,
+                bookingList );
+
+        list.setAdapter(arrayAdapter);
+
+    }
+
+    private void sendAppointmentToFirebase() {
+
+    }
 
     @Override
     public void onItemClick(View view, int position) {
 //        click listener for adapter clicks
+    }
+
+    @Override
+    public void appointmentList(ArrayList<String> list) {
+        bookingList = list;
+        Log.d(TAG, "appointmentList: "+ bookingList);
     }
 }

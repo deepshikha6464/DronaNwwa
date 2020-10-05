@@ -1,6 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+<!--appointment details-->
+    <TextView
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/appointment_details"
+        android:maxLines="3"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorPrimaryDark"
+        android:fontFamily="@font/poppins"
+        android:padding="8dp"
+        />
+    <View
+        android:layout_width="250dp"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/start"/>
+<!--    long text-->
+    <TextView
+        android:id="@+id/regText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You have selected following Services"
+        android:maxLines="3"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimary"
+        android:fontFamily="@font/poppins"
+        android:padding="8dp"
+        android:layout_marginLeft="10dp"
+    android:layout_below="@+id/start"
+        />
+<!--details -->
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/regText">
+<!--        name-->
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_weight="100"
+          >
+          <TextView
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="50"
+              android:text="@string/name"
+              android:fontFamily="@font/poppins"
+              android:textSize="14sp"/>
 
-</LinearLayout>
+          <TextView
+              android:id="@+id/namebook"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="50"
+              android:text="Name"
+              android:fontFamily="@font/poppins"
+              android:textSize="14sp"/>
+
+      </LinearLayout>
+<!--        phone no-->
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_weight="100"
+          >
+          <TextView
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="50"
+              android:text="@string/contact_number"
+              android:fontFamily="@font/poppins"
+              android:textSize="14sp"/>
+
+          <TextView
+              android:id="@+id/phone"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="50"
+              android:text="Name"
+              android:fontFamily="@font/poppins"
+              android:textSize="14sp"/>
+
+      </LinearLayout>
+
+
+        <!--        list-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="100"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="@string/selected_services"
+                android:fontFamily="@font/poppins"
+                android:textSize="14sp"/>
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50">
+            <ListView
+                android:id="@+id/list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:maxLines="3"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins"
+                android:padding="8dp"
+
+                android:fastScrollEnabled="true"
+                />
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/dateee"
+            android:padding="4dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            app:hintTextAppearance="@style/TextLabel"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:hint="@string/enter_preffered_date_time"
+            app:endIconMode="clear_text"
+            app:errorTextAppearance="@style/CustomTextInputLayoutStyle.ErrorTextStyle"
+            app:endIconTint="@color/colorPrimaryDark"
+            app:errorEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dob1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/re"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/poppins"
+            android:text="@string/request" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/note1"
+            android:padding="4dp"
+            android:textSize="12dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+
+
+
+    </LinearLayout>
+<!--    </RelativeLayout>-->
+<!--    </androidx.core.widget.NestedScrollView>-->
+</RelativeLayout>

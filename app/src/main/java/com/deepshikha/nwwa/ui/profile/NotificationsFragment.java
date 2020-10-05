@@ -1,4 +1,4 @@
-package com.deepshikha.nwwa.ui.notifications;
+package com.deepshikha.nwwa.ui.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

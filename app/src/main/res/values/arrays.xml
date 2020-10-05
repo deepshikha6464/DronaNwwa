@@ -7,4 +7,10 @@
     <item>Sailors</item>
         <item>None of above</item>
     </string-array>
+
+    <string-array name="IntrestAreas">Posting Type
+        <item>Saundrya</item>
+    <item> Kala Kendra</item>
+    <item>Others</item>
+    </string-array>
 </resources>

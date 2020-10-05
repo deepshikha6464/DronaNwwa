@@ -24,6 +24,7 @@
     <string name="code">Enter Code (if any)</string>
     <string name="submit"><b>Submit</b></string>
     <string name="note">Note: \nVerification Process may take few Days.\nYou will be notified once done.</string>
+    <string name="note1">Note: \nGetting Appointment may take few Hours or may be one Day.\nYou will be notified once done. \nYou may get a call regarding same</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Samudri</string>
@@ -32,4 +33,18 @@
     <string name="Saundrya">Saundrya</string>
     <string name="service_heading">Select the Services </string>
     <string name="Book">Book Appointment</string>
+    <string name="provider_consol">Provider Consol</string>
+    <string name="admin_consol">Admin Consol</string>
+    <string name="notification">Notification</string>
+    <string name="register_text">Register Yourself as Service Provider for various NWWA Activities</string>
+    <string name="verified_providers_login">Verified Providers Login</string>
+    <string name="login">Login</string>
+    <string name="enter_code">Enter Code</string>
+    <string name="pc"><b>PROVIDER CONSOL</b></string>
+    <string name="appointment_details">Appointment Details</string>
+    <string name="selected_services">Selected Services</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="name1">Name</string>
+    <string name="enter_preffered_date_time">Enter preferred Date and Time</string>
+    <string name="request">Request</string>
 </resources>

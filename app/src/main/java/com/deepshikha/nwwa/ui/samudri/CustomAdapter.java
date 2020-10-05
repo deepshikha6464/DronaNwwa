@@ -1,4 +1,4 @@
-package com.deepshikha.nwwa.ui.dashboard;
+package com.deepshikha.nwwa.ui.samudri;
 
 import android.app.Activity;
 import android.view.LayoutInflater;

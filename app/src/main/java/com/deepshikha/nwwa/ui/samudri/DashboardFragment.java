@@ -1,4 +1,4 @@
-package com.deepshikha.nwwa.ui.dashboard;
+package com.deepshikha.nwwa.ui.samudri;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,18 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.deepshikha.nwwa.MainActivity;
 import com.deepshikha.nwwa.R;
 
 import java.util.Timer;
