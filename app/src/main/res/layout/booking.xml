@@ -139,8 +139,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:id="@+id/dateee"
-            android:padding="4dp"
+             android:padding="4dp"
             android:layout_marginLeft="6dp"
             android:layout_marginRight="6dp"
             app:hintTextAppearance="@style/TextLabel"
@@ -152,7 +151,7 @@
             app:errorEnabled="false">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/dob1"
+                android:id="@+id/dateee"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />

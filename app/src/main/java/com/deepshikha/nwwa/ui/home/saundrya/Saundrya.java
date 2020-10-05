@@ -49,7 +49,11 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -75,7 +79,7 @@ public class Saundrya extends Fragment implements SaundryaAdapter.ItemClickListe
     final long DELAY_MS = 500;//delay in milliseconds before task is to be executed
 //   firebase
     private FirebaseDatabase database;
-    private DatabaseReference dbRefUserPosts,dbRef;
+    private DatabaseReference dbRefUserPosts,dbRef,dbRefAppointments,dbRefUserReq;
     private static FirebaseUser currentUser;
     FirebaseStorage storage;
     StorageReference storageReference;
@@ -86,8 +90,10 @@ public class Saundrya extends Fragment implements SaundryaAdapter.ItemClickListe
     SaundryaAdapter adapter;
     TextView name,phone;
     ListView list;
-    TextInputLayout date;
+    TextInputEditText date;
 
+//    vars
+    String username,phoneno,timing,timeOfRequest;
     public Saundrya() {
         // Required empty public constructor
     }
@@ -212,6 +218,8 @@ public class Saundrya extends Fragment implements SaundryaAdapter.ItemClickListe
 //        refrence for saving posts
         dbRefUserPosts = database.getReference("/Saundrya");
         dbRef = database.getReference("/Saundrya/Services");
+        dbRefAppointments = database.getReference("/Saundrya/Appointments");
+        dbRefUserReq = database.getReference("/UserRequests");
 
         dbRef.addValueEventListener(changeListener);
         dbRef.addChildEventListener(childEventListener);
@@ -330,6 +338,9 @@ public void BookAppointmentButton(){
     request.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            username = name.getText().toString();
+            phoneno = phone.getText().toString();
+            timing = date.getText().toString();
             sendAppointmentToFirebase();
         }
     });
@@ -346,11 +357,30 @@ public void BookAppointmentButton(){
                 bookingList );
 
         list.setAdapter(arrayAdapter);
-
+        Date currentTime = Calendar.getInstance().getTime();
+        timeOfRequest = currentTime.toString();
     }
 
     private void sendAppointmentToFirebase() {
+        String key = dbRefAppointments.child(username)
+                .child(currentUser.getUid()).child(timeOfRequest).push().getKey();
 
+        String key2 = dbRefUserReq.child(username)
+                .child(currentUser.getUid()).child(timeOfRequest).push().getKey();
+//        UserData post = new UserData( userData.getName() , userData.getPost(),userData.getImgUrl(), userData.getTime(),userData.getUid());
+//        Map<String, String> postValues = new Map<>();
+        Map<String, String> postValues = new HashMap<>();
+            postValues.put("name",username);
+            postValues.put("phone",phoneno);
+            postValues.put("date",timing);
+            postValues.put("list",bookingList.toString());
+            postValues.put("timeOfRequest",timeOfRequest);
+        Map<String, Object> childUpdates = new HashMap<>();
+        Map<String, Object> childUpdates2 = new HashMap<>();
+        childUpdates.put("/Appointments/" + key, postValues);
+        childUpdates2.put("/" + username + "/" + key2, postValues);
+        dbRefAppointments.updateChildren(childUpdates);
+        dbRefUserReq.updateChildren(childUpdates2);
     }
 
     @Override
